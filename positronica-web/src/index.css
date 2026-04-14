@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+@theme {
+  /* Primary palette */
+  --color-primary: #645880;
+  --color-primary-container: #c4b5e3;
+  --color-primary-fixed: #e9ddff;
+  --color-primary-fixed-dim: #cebfee;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #51456c;
+  --color-on-primary-fixed: #201539;
+  --color-on-primary-fixed-variant: #4c4067;
+
+  /* Secondary */
+  --color-secondary: #78536b;
+  --color-secondary-container: #ffcfec;
+  --color-secondary-fixed: #ffd7ee;
+  --color-secondary-fixed-dim: #e8b9d5;
+  --color-on-secondary: #ffffff;
+  --color-on-secondary-container: #7b556e;
+  --color-on-secondary-fixed: #2e1126;
+  --color-on-secondary-fixed-variant: #5e3c53;
+
+  /* Tertiary */
+  --color-tertiary: #5b5c76;
+  --color-tertiary-container: #b9bad8;
+  --color-tertiary-fixed: #e0e0ff;
+  --color-tertiary-fixed-dim: #c4c4e2;
+  --color-on-tertiary: #ffffff;
+  --color-on-tertiary-container: #484a63;
+  --color-on-tertiary-fixed: #181a30;
+  --color-on-tertiary-fixed-variant: #43455e;
+
+  /* Surface hierarchy */
+  --color-background: #f9f9fb;
+  --color-surface: #f9f9fb;
+  --color-surface-bright: #f9f9fb;
+  --color-surface-dim: #d9dadc;
+  --color-surface-container: #edeef0;
+  --color-surface-container-low: #f3f3f5;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-high: #e8e8ea;
+  --color-surface-container-highest: #e2e2e4;
+  --color-surface-variant: #e2e2e4;
+  --color-surface-tint: #645880;
+
+  /* On-surface */
+  --color-on-surface: #1a1c1d;
+  --color-on-surface-variant: #49454d;
+  --color-on-background: #1a1c1d;
+
+  /* Inverse */
+  --color-inverse-surface: #2f3132;
+  --color-inverse-on-surface: #f0f0f2;
+  --color-inverse-primary: #cebfee;
+
+  /* Outline */
+  --color-outline: #7a757e;
+  --color-outline-variant: #cac4ce;
+
+  /* Error */
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+  --color-on-error: #ffffff;
+  --color-on-error-container: #93000a;
+
+  /* Accent highlights */
+  --color-accent-pink: #ffcfec;
+  --color-accent-gold: #ffd700;
+  --color-accent-green: #cdfcdc;
+
+  /* Typography */
+  --font-headline: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-label: 'Inter', system-ui, sans-serif;
+  --font-brand: 'Orbitron', system-ui, sans-serif;
+  --font-technical: 'Space Grotesk', system-ui, monospace;
+
+  /* Border radius - sharp corners per design system */
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-full: 9999px;
+}
+
+/* Base styles */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-on-surface);
+  background: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Dot grid background pattern */
+.dot-grid {
+  background-image: radial-gradient(circle, #C4B5E3 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.05;
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(202, 196, 206, 0.15);
+}
+
+/* Gradient line animation */
+.gradient-pulse {
+  background: linear-gradient(90deg, #645880 0%, #ffcfec 50%, #645880 100%);
+  background-size: 200% auto;
+  animation: gradientMove 3s linear infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* Selection styling */
+::selection {
+  background-color: #ffcfec;
+  color: #1a1c1d;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #C4B5E3; border-radius: 0; }
+
+/* Material symbols */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Dark mode overrides */
+.dark {
+  --color-background: #121212;
+  --color-surface: #1a1c1d;
+  --color-surface-bright: #1a1c1d;
+  --color-surface-container: #2f3132;
+  --color-surface-container-low: #2a2c2d;
+  --color-surface-container-lowest: #252728;
+  --color-surface-container-high: #353738;
+  --color-surface-container-highest: #404243;
+  --color-on-surface: #f0f0f2;
+  --color-on-surface-variant: #9c9ca4;
+  --color-on-background: #f0f0f2;
+}
