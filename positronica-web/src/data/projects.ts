@@ -47,7 +47,8 @@ export const projects: Project[] = [
     name: 'HYPATIA',
     tagline: 'ADAPTIVE LEARNING FOR NEURODIVERGENT MINDS',
     description: 'ADHD-friendly study platform with AI-powered explanations, exam simulators (UNAM, AWS), and gamified learning paths.',
-    status: 'NEW',
+    status: 'LIVE',
+    url: 'https://hypatia-learning.netlify.app/',
     icon: 'psychology',
   },
 ]
