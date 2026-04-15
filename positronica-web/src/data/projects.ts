@@ -1,54 +1,94 @@
+export interface BilingualText {
+  en: string
+  es: string
+}
+
 export interface Project {
   id: string
   name: string
-  tagline: string
-  description: string
+  tagline: BilingualText
+  description: BilingualText
   status: 'LIVE' | 'ACTIVE' | 'BETA' | 'NEW'
   url?: string
-  icon: string
+  repo?: string
+  visual: 'balance' | 'radar' | 'rings' | 'blob' | 'network'
 }
 
 export const projects: Project[] = [
   {
     id: 'fairhire',
     name: 'FAIRHIRE',
-    tagline: 'GENDER PAY GAP & JOB FIT ANALYZER',
-    description: 'AI-powered tool that helps women in Mexico identify pay gaps and analyze job fit. Built with i18n support and expanding to INEI/ENOE data integration.',
+    tagline: {
+      en: 'GENDER PAY GAP & JOB-FIT ANALYZER',
+      es: 'ANALIZADOR DE BRECHA SALARIAL Y FIT LABORAL',
+    },
+    description: {
+      en: 'Exposes the gender pay gap in Mexican tech and analyzes job fit with Claude API. Tailored cover letters, BYOK keys, INEGI/ENOE microdata on the roadmap.',
+      es: 'Expone la brecha salarial de género en tech mexicano y analiza el fit laboral con la API de Claude. Cartas de presentación personalizadas, claves BYOK e integración con microdatos INEGI/ENOE en el roadmap.',
+    },
     status: 'LIVE',
     url: 'https://fairfit-ai.netlify.app',
-    icon: 'balance',
+    repo: 'https://github.com/G10hdz/FairHire',
+    visual: 'balance',
   },
   {
     id: 'ergane',
     name: 'ERGANE',
-    tagline: 'JOB SEARCH AUTOMATION ENGINE',
-    description: 'Automates job search across 9+ boards with AI-powered matching, tailored CV generation, and Telegram notifications.',
+    tagline: {
+      en: 'JOB SEARCH AUTOMATION ENGINE',
+      es: 'MOTOR DE AUTOMATIZACIÓN DE BÚSQUEDA DE EMPLEO',
+    },
+    description: {
+      en: 'Consolidates tech vacancies from 9+ sources with hybrid scoring (skills, rules, seniority, company fit) plus Telegram notifications and CV generation. 185 matched jobs per run.',
+      es: 'Consolida vacantes tech de más de 9 fuentes con scoring híbrido (habilidades, reglas, seniority, fit de empresa) más notificaciones por Telegram y generación de CV. 185 empleos coincidentes por ejecución.',
+    },
     status: 'ACTIVE',
-    icon: 'radar',
+    repo: 'https://github.com/G10hdz/Ergane',
+    visual: 'radar',
   },
   {
     id: 'metis',
     name: 'METIS',
-    tagline: 'LOCAL PERSONAL AI AGENT',
-    description: 'Local-first AI orchestrator with multi-tool routing (RAG, code, web search, file ops) running entirely on your machine via Ollama.',
+    tagline: {
+      en: 'LOCAL PERSONAL AI ORCHESTRATOR',
+      es: 'ORQUESTADOR DE IA LOCAL Y PERSONAL',
+    },
+    description: {
+      en: 'Local-first agent that runs commands, manages files, processes PDFs and orchestrates RAG — via Telegram or Gradio. 5-level fallback ending in Ollama on-device.',
+      es: 'Agente local que ejecuta comandos, gestiona archivos, procesa PDFs y orquesta RAG — vía Telegram o Gradio. Fallback de 5 niveles que termina en Ollama en el dispositivo.',
+    },
     status: 'ACTIVE',
-    icon: 'hub',
+    repo: 'https://github.com/G10hdz/Metis',
+    visual: 'rings',
   },
   {
     id: 'venus',
     name: 'VENUS AI',
-    tagline: 'BEAUTY & SPA MANAGEMENT PLATFORM',
-    description: 'All-in-one booking, inventory, and client management platform for beauty and spa businesses.',
-    status: 'BETA',
-    icon: 'spa',
+    tagline: {
+      en: 'BEAUTY & SPA MANAGEMENT PLATFORM',
+      es: 'PLATAFORMA DE GESTIÓN PARA ESTÉTICAS Y SPAS',
+    },
+    description: {
+      en: 'All-in-one booking, inventory and client management for beauty studios and spas. Built by co-founder Jeaneth on React + .NET with a narrative visual design.',
+      es: 'Gestión integral de citas, inventario y clientes para estudios de belleza y spas. Desarrollada por la cofundadora Jeaneth en React + .NET con diseño visual narrativo.',
+    },
+    status: 'NEW',
+    visual: 'blob',
   },
   {
     id: 'hypatia',
     name: 'HYPATIA',
-    tagline: 'ADAPTIVE LEARNING FOR NEURODIVERGENT MINDS',
-    description: 'ADHD-friendly study platform with AI-powered explanations, exam simulators (UNAM, AWS), and gamified learning paths.',
+    tagline: {
+      en: 'ADAPTIVE LEARNING FOR NEURODIVERGENT MINDS',
+      es: 'APRENDIZAJE ADAPTATIVO PARA MENTES NEURODIVERGENTES',
+    },
+    description: {
+      en: 'Gamified simulator for the UNAM Área 1 entrance exam and adaptive learning for ADHD and visual learners. 9,296-question bank, 3h simulacrum mode, offline persistence.',
+      es: 'Simulador gamificado para el examen de admisión UNAM Área 1 y aprendizaje adaptativo para TDAH y aprendices visuales. Banco de 9,296 preguntas, modo simulacro de 3h y persistencia offline.',
+    },
     status: 'LIVE',
     url: 'https://hypatia-learning.netlify.app/',
-    icon: 'psychology',
+    repo: 'https://github.com/G10hdz/Hypatia',
+    visual: 'network',
   },
 ]

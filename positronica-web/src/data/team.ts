@@ -1,27 +1,29 @@
+import type { BilingualText } from './projects'
+
 export interface TeamMember {
   id: string
   name: string
   initials: string
-  role: string
-  title: string
-  bio: string
+  role: BilingualText
+  title: BilingualText
+  bio: BilingualText
   linkedin: string
   github: string
   gradient: string
-  focus: string[]
+  focus: BilingualText[]
 }
 
 export interface TimelineEvent {
   date: string
-  title: string
-  description: string
+  title: BilingualText
+  description: BilingualText
   color: string
 }
 
 export interface RepoStatus {
   name: string
-  tagline: string
-  status: 'LIVE' | 'ACTIVE' | 'NEW'
+  tagline: BilingualText
+  status: 'LIVE' | 'ACTIVE' | 'NEW' | 'BETA'
   icon: string
   progress: number
   color: string
@@ -29,70 +31,93 @@ export interface RepoStatus {
 
 export const founders: TeamMember[] = [
   {
-    id: 'mayte',
+    id: 'gio',
     name: 'Mayte Giovanna Hernández Ríos',
-    initials: 'MH',
-    role: 'CO-FOUNDER',
-    title: 'PRINCIPAL ARCHITECT',
-    bio: 'Leading the architectural vision of Positronica with a focus on full-stack excellence and ethical AI implementation.',
-    linkedin: 'https://www.linkedin.com/in/mayte-giovanna-hernandez-rios/?locale=en',
+    initials: 'GH',
+    role: { en: 'CO-FOUNDER', es: 'COFUNDADORA' },
+    title: { en: 'CLOUD & AUTOMATION ENGINEER', es: 'INGENIERÍA CLOUD Y AUTOMATIZACIÓN' },
+    bio: {
+      en: 'Math undergrad at UNAM turned Cloud & Automation Engineer. Led AWS Cloud Support, now Infra Analyst III at Santander Global Tech. Builds the infrastructure and AI orchestration layer of Positronica.',
+      es: 'Matemática de la UNAM convertida en Cloud & Automation Engineer. Lideró soporte cloud en AWS, ahora Analista de Infraestructura III en Santander Global Tech. Construye la capa de infraestructura y orquestación de IA de Positronica.',
+    },
+    linkedin: 'https://linkedin.com/in/maytegiovanna',
     github: 'https://github.com/G10hdz',
     gradient: 'from-primary to-primary-container',
-    focus: ['FULL-STACK DEVELOPMENT', 'FAIRHIRE ECOSYSTEM', 'VENUS AI INTERFACE'],
+    focus: [
+      { en: 'AWS / INFRASTRUCTURE / MLOPS', es: 'AWS / INFRAESTRUCTURA / MLOPS' },
+      { en: 'LANGGRAPH + LOCAL RAG (ROCm)', es: 'LANGGRAPH + RAG LOCAL (ROCm)' },
+      { en: 'METIS / ERGANE / ECHO', es: 'METIS / ERGANE / ECHO' },
+      { en: 'HYPATIA / FAIRHIRE', es: 'HYPATIA / FAIRHIRE' },
+    ],
   },
   {
     id: 'jeaneth',
-    name: 'Jeaneth S. Hdz Ríos',
+    name: 'Jeaneth S. Hernández Ríos',
     initials: 'JH',
-    role: 'CO-FOUNDER',
-    title: 'CORE RESEARCH',
-    bio: 'Specializing in the intersection of human psychology and autonomous systems. Driving the Hypatia framework forward.',
+    role: { en: 'CO-FOUNDER', es: 'COFUNDADORA' },
+    title: { en: 'FULL-STACK DEVELOPER', es: 'DESARROLLADORA FULL-STACK' },
+    bio: {
+      en: 'Full-stack developer and frontend specialist. Leads product design and visual narrative across Positronica. Building Venus AI, a management platform for beauty studios and spas.',
+      es: 'Desarrolladora full-stack y especialista en frontend. Lidera el diseño de producto y la narrativa visual en Positronica. Construye Venus AI, una plataforma de gestión para estudios de belleza y spas.',
+    },
     linkedin: 'https://www.linkedin.com/in/jeaneth-s-hdz-rios/',
     github: 'https://github.com/jeanethS',
     gradient: 'from-secondary to-secondary-container',
-    focus: ['FULL-STACK ARCHITECTURE', 'HYPATIA PROTOCOLS'],
+    focus: [
+      { en: 'REACT / .NET / TYPESCRIPT', es: 'REACT / .NET / TYPESCRIPT' },
+      { en: 'PRODUCT & VISUAL DESIGN', es: 'DISEÑO DE PRODUCTO Y VISUAL' },
+      { en: 'VENUS AI', es: 'VENUS AI' },
+      { en: 'LANDING DESIGN SYSTEM', es: 'SISTEMA DE DISEÑO DEL LANDING' },
+    ],
   },
 ]
 
-export const collaborators: TeamMember[] = [
-  {
-    id: 'gio',
-    name: 'Gio',
-    initials: 'G',
-    role: 'COLLABORATOR',
-    title: 'CLOUD & AI INFRASTRUCTURE',
-    bio: 'Cloud & Automation Engineer building the infrastructure that powers Metis, Ergane, and Echo.',
-    linkedin: '',
-    github: 'https://github.com/G10hdz',
-    gradient: 'from-tertiary to-tertiary-container',
-    focus: ['CLOUD INFRASTRUCTURE', 'AI ORCHESTRATION', 'METIS / ERGANE / ECHO'],
-  },
-]
+export const collaborators: TeamMember[] = []
 
 export const timeline: TimelineEvent[] = [
   {
-    date: '2022.Q1',
-    title: 'INCUBATION',
-    description: 'Formation of Positronica core principles. Initial research into decentralized bias correction.',
+    date: '2025.10',
+    title: { en: 'FORMATION', es: 'FORMACIÓN' },
+    description: {
+      en: 'The RAG Prompt Optimizer hackathon (Kavak × OpenAI) becomes the inflection point that formalizes Positronica Labs.',
+      es: 'El hackathon RAG Prompt Optimizer (Kavak × OpenAI) se convierte en el punto de inflexión que formaliza Positronica Labs.',
+    },
     color: 'bg-primary',
   },
   {
-    date: '2023.Q3',
-    title: 'FAIRHIRE BETA',
-    description: 'The first public-facing implementation of our ethical AI hiring algorithms.',
+    date: '2026.03',
+    title: { en: 'QMANUS_MX', es: 'QMANUS_MX' },
+    description: {
+      en: 'Multi-tenant multi-agent platform for the Alibaba Cloud × TiDB hackathon. 15/15 security tests passed; lesson learned on git-history hygiene after API key exposure.',
+      es: 'Plataforma multi-agente multi-tenant para el hackathon Alibaba Cloud × TiDB. 15/15 pruebas de seguridad aprobadas; lección aprendida sobre higiene del historial de git tras exposición de API keys.',
+    },
     color: 'bg-secondary',
   },
   {
-    date: '2024.PRESENT',
-    title: 'HYPATIA INTEGRATION',
-    description: 'Scaling neural infrastructure and expanding the collaborative ecosystem.',
+    date: '2026.04',
+    title: { en: 'HYPATIA + LANDING LIVE', es: 'HYPATIA + LANDING EN VIVO' },
+    description: {
+      en: 'Hypatia ships to production on Netlify. Positronica Labs landing goes live with the Clinical Sublime design system.',
+      es: 'Hypatia llega a producción en Netlify. El landing de Positronica Labs sale en vivo con el sistema de diseño Clinical Sublime.',
+    },
     color: 'bg-on-surface',
+  },
+  {
+    date: '2026.Q2-Q4',
+    title: { en: 'SAAS LAUNCH WAVE', es: 'OLA DE LANZAMIENTOS SAAS' },
+    description: {
+      en: 'Hypatia, Ergane, Echo and Metis roll out freemium SaaS tiers. Target ~$5K MRR by month 6, ~$29K MRR by month 12.',
+      es: 'Hypatia, Ergane, Echo y Metis lanzan sus planes freemium SaaS. Objetivo: ~$5K MRR en el mes 6, ~$29K MRR en el mes 12.',
+    },
+    color: 'bg-primary',
   },
 ]
 
 export const repoStatuses: RepoStatus[] = [
-  { name: 'FairHire', tagline: 'EQUITABLE RECRUITMENT ENGINE', status: 'LIVE', icon: 'verified', progress: 100, color: 'bg-primary' },
-  { name: 'Ergane', tagline: 'AUTONOMOUS RESEARCH AGENT', status: 'ACTIVE', icon: 'settings_slow_motion', progress: 75, color: 'bg-secondary' },
-  { name: 'Metis', tagline: 'COGNITIVE BIAS ANALYZER', status: 'ACTIVE', icon: 'psychology', progress: 50, color: 'bg-secondary' },
-  { name: 'Echo', tagline: 'NEURAL SYNTHESIS MODULE', status: 'NEW', icon: 'podcasts', progress: 25, color: 'bg-on-surface' },
+  { name: 'Hypatia', tagline: { en: 'NEURODIVERGENT EXAM PREP', es: 'PREPARACIÓN NEURODIVERGENTE' }, status: 'LIVE', icon: 'psychology', progress: 100, color: 'bg-primary' },
+  { name: 'FairHire', tagline: { en: 'PAY GAP & JOB-FIT ANALYZER', es: 'ANALIZADOR DE BRECHA SALARIAL' }, status: 'LIVE', icon: 'balance', progress: 100, color: 'bg-primary' },
+  { name: 'Ergane', tagline: { en: 'JOB SEARCH AUTOMATION', es: 'AUTOMATIZACIÓN DE BÚSQUEDA' }, status: 'ACTIVE', icon: 'radar', progress: 80, color: 'bg-secondary' },
+  { name: 'Metis', tagline: { en: 'LOCAL AI ORCHESTRATOR', es: 'ORQUESTADOR DE IA LOCAL' }, status: 'ACTIVE', icon: 'hub', progress: 70, color: 'bg-secondary' },
+  { name: 'Echo', tagline: { en: 'LOCAL PRONUNCIATION PRACTICE', es: 'PRÁCTICA DE PRONUNCIACIÓN LOCAL' }, status: 'BETA', icon: 'graphic_eq', progress: 55, color: 'bg-tertiary' },
+  { name: 'Venus AI', tagline: { en: 'BEAUTY & SPA PLATFORM', es: 'PLATAFORMA DE BELLEZA Y SPA' }, status: 'NEW', icon: 'spa', progress: 30, color: 'bg-on-surface' },
 ]

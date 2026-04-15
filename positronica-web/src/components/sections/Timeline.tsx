@@ -1,16 +1,19 @@
 import { motion } from 'framer-motion'
 import { timeline } from '@/data/team'
+import { useLang } from '@/i18n/LanguageContext'
 
 export function Timeline() {
+  const { lang, t } = useLang()
+
   return (
     <section className="px-6 md:px-12 py-32 bg-surface-container-low">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
         <div>
           <h2 className="font-brand text-3xl md:text-5xl font-bold mb-8 uppercase tracking-tighter">
-            OUR JOURNEY
+            {t.team.journeyHeading}
           </h2>
           <p className="text-on-surface-variant leading-relaxed text-lg max-w-md">
-            From a singular vision to a laboratory of emerging technologies. We document every mutation, every breakthrough, and every ethical pivot.
+            {t.team.journeyBody}
           </p>
         </div>
 
@@ -28,8 +31,8 @@ export function Timeline() {
               <span className="font-technical text-[10px] tracking-widest text-primary mb-2 block uppercase">
                 {event.date}
               </span>
-              <h4 className="font-brand text-lg mb-3 uppercase">{event.title}</h4>
-              <p className="text-on-surface-variant text-sm leading-relaxed">{event.description}</p>
+              <h4 className="font-brand text-lg mb-3 uppercase">{event.title[lang]}</h4>
+              <p className="text-on-surface-variant text-sm leading-relaxed">{event.description[lang]}</p>
             </motion.div>
           ))}
         </div>

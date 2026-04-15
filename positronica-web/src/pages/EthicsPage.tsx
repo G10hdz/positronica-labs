@@ -3,15 +3,19 @@ import { ValueGrid } from '@/components/sections/ValueCard'
 import { QuoteSection } from '@/components/sections/QuoteSection'
 import { PrincipleGrid } from '@/components/sections/PrincipleGrid'
 import { coreValues, principles } from '@/data/ethics'
+import { useLang } from '@/i18n/LanguageContext'
 import { motion } from 'framer-motion'
 
 export function EthicsPage() {
+  const { t } = useLang()
+  const e = t.ethics
+
   return (
     <div className="dot-grid min-h-screen">
       <HeroSection
-        subtitle="> OUR_COMMITMENT_TO_TRANSPARENT_AI"
-        title="ETHICS & RESPONSIBILITY"
-        description="> BUILDING AI TOOLS THAT CLOSE GAPS, NOT WIDEN THEM"
+        subtitle={e.heroSubtitle}
+        title={e.heroTitle}
+        description={e.heroDesc}
       />
 
       <ValueGrid values={coreValues} />
@@ -22,12 +26,16 @@ export function EthicsPage() {
       </div>
 
       <QuoteSection
-        quote='AI should serve humanity, not the reverse.'
-        highlight="humanity"
-        underline="reverse"
+        quote={e.quote}
+        highlight={e.quoteHighlight}
+        underline={e.quoteUnderline}
       />
 
-      <PrincipleGrid principles={principles} />
+      <PrincipleGrid
+        principles={principles}
+        sectionLabel={e.principlesLabel}
+        title={e.principlesHeading}
+      />
 
       {/* CTA */}
       <motion.section
@@ -38,14 +46,9 @@ export function EthicsPage() {
         className="py-40 px-6 md:px-12 flex flex-col items-center justify-center text-center max-w-3xl mx-auto"
       >
         <h2 className="font-brand text-xl tracking-[0.3em] mb-6 uppercase">
-          BUILDING BEYOND THE HORIZON
+          {e.ctaHeading}
         </h2>
-        <p className="text-on-surface-variant mb-10 text-sm">
-          Read our full technical whitepaper on AI alignment and ethical infrastructure. Our charter is updated quarterly to reflect emerging safety paradigms.
-        </p>
-        <button className="border border-primary text-primary px-10 py-4 font-brand uppercase text-[10px] tracking-[0.2em] hover:bg-secondary-container hover:border-secondary-container hover:text-on-secondary-container transition-all">
-          Download Ethics Charter
-        </button>
+        <p className="text-on-surface-variant text-sm">{e.ctaBody}</p>
       </motion.section>
     </div>
   )

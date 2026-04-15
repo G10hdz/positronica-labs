@@ -98,11 +98,10 @@ body {
   overflow-x: hidden;
 }
 
-/* Dot grid background pattern */
+/* Dot grid background pattern — uses rgba so subtlety doesn't bleed into children via opacity */
 .dot-grid {
-  background-image: radial-gradient(circle, #C4B5E3 1px, transparent 1px);
+  background-image: radial-gradient(circle, rgba(196, 181, 227, 0.35) 1px, transparent 1px);
   background-size: 32px 32px;
-  opacity: 0.05;
 }
 
 /* Glassmorphism card */
@@ -124,16 +123,77 @@ body {
   100% { background-position: 200% 50%; }
 }
 
+/* Intro loader animations */
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100%); opacity: 0; visibility: hidden; }
+}
+.loader-letter {
+  animation: fadeInOut 0.5s ease forwards;
+  opacity: 0;
+}
+.loader-container {
+  animation: slideUp 1s ease 3s forwards;
+}
+
+/* Per-project card visuals */
+@keyframes balance {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+.balance-scale { animation: balance 3s ease-in-out infinite; }
+
+@keyframes radar {
+  0% { transform: scale(0.1); opacity: 1; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+.radar-sweep { animation: radar 2s linear infinite; }
+
+@keyframes ring-expand {
+  0% { transform: scale(0.5); opacity: 0; }
+  50% { opacity: 0.5; }
+  100% { transform: scale(2); opacity: 0; }
+}
+.expanding-ring { animation: ring-expand 3s ease-out infinite; }
+
+@keyframes blob-morph {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+}
+.morphing-blob { animation: blob-morph 8s ease-in-out infinite; }
+
+@keyframes node-float {
+  0%, 100% { transform: translate(0,0); }
+  33% { transform: translate(5px, -5px); }
+  66% { transform: translate(-5px, 5px); }
+}
+.node-network > div { animation: node-float 4s ease-in-out infinite; }
+
+/* Respect reduced motion preference — disable all keyframe animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 /* Selection styling */
 ::selection {
-  background-color: #ffcfec;
-  color: #1a1c1d;
+  background-color: var(--color-secondary-container);
+  color: var(--color-on-surface);
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: #C4B5E3; border-radius: 0; }
+::-webkit-scrollbar-thumb { background: var(--color-primary-container); border-radius: 0; }
 
 /* Material symbols */
 .material-symbols-outlined {
@@ -151,6 +211,27 @@ body {
   --color-surface-container-high: #353738;
   --color-surface-container-highest: #404243;
   --color-on-surface: #f0f0f2;
-  --color-on-surface-variant: #9c9ca4;
+  --color-on-surface-variant: #cac4ce;
   --color-on-background: #f0f0f2;
+  /* Invert primary palette for dark — light values on dark backgrounds */
+  --color-primary: #cebfee;
+  --color-primary-container: #4c4067;
+  --color-on-primary: #201539;
+  --color-on-primary-container: #e9ddff;
+  --color-secondary: #e8b9d5;
+  --color-secondary-container: #5e3c53;
+  --color-on-secondary: #2e1126;
+  --color-on-secondary-container: #ffd7ee;
+  --color-tertiary: #c4c4e2;
+  --color-tertiary-container: #43455e;
+  --color-on-tertiary: #181a30;
+  --color-on-tertiary-container: #e0e0ff;
+  --color-outline: #958e99;
+  --color-outline-variant: #49454d;
+}
+
+/* glass-card dark override — prevent white blobs on dark backgrounds */
+.dark .glass-card {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
 }

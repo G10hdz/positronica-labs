@@ -1,24 +1,28 @@
 import { motion } from 'framer-motion'
 import { repoStatuses } from '@/data/team'
+import { useLang } from '@/i18n/LanguageContext'
 
 const statusLabelColors: Record<string, string> = {
   LIVE: 'bg-primary text-white',
   ACTIVE: 'bg-secondary text-white',
+  BETA: 'bg-tertiary text-white',
   NEW: 'bg-on-surface text-white',
 }
 
 export function RepoStatusGrid() {
+  const { lang, t } = useLang()
+
   return (
     <section className="px-6 md:px-12 py-32">
       <div className="max-w-7xl mx-auto">
         <div className="mb-16">
           <h2 className="font-brand text-3xl md:text-4xl mb-4 uppercase">
-            LAB_REPOSITORY_STATUS
+            {t.team.repoHeading}
           </h2>
           <div className="w-40 h-[1px] gradient-pulse" />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {repoStatuses.map((repo, i) => (
             <motion.div
               key={repo.name}
@@ -36,7 +40,7 @@ export function RepoStatusGrid() {
               </div>
               <h3 className="font-brand text-base mb-2 uppercase">{repo.name}</h3>
               <p className="text-[10px] text-on-surface-variant font-technical mb-6 uppercase tracking-wider">
-                {repo.tagline}
+                {repo.tagline[lang]}
               </p>
               <div className="w-full h-[2px] bg-outline-variant/30 relative">
                 <div
