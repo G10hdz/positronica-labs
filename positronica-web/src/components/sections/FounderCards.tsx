@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { founders, type TeamMember } from '@/data/team'
-import { useLang } from '@/i18n/LanguageContext'
+import { useLang } from '@/i18n/useLang'
 
 export function FounderCards() {
   const { lang } = useLang()

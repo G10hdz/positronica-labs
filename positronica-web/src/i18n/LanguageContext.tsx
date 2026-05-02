@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type ReactNode } from 'react'
+import { createContext, useState, type ReactNode } from 'react'
 import translations, { type Lang, type TranslationKeys } from './translations'
 
 interface LanguageCtx {
@@ -32,8 +32,4 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   )
 }
 
-export function useLang() {
-  const ctx = useContext(LanguageContext)
-  if (!ctx) throw new Error('useLang must be used inside LanguageProvider')
-  return ctx
-}
+export { LanguageContext }

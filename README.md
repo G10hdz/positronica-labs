@@ -1,18 +1,18 @@
 # POSITRONICA LABS®
 
-**AI for a fairer future.**
+**Agentic operations for Latin America.**
 
-Landing page for Positronica Labs, a technology laboratory built by women, for everyone. We ship tools that make hiring fairer, learning adaptive, and automation accessible.
+Landing page for Positronica Labs, an applied agentic AI lab for high-friction operating systems in Latin America. The current commercial beachhead is agentic operations intelligence for nearshoring-era teams: knowledge transfer, skills visibility, SOP extraction, trust-controlled automation, and measurable capability gains.
 
 ## The Ecosystem
 
 | Project | Description | Status |
 |---------|-------------|--------|
-| **FairHire** | Gender pay gap & job fit analyzer | [Live](https://fairfit-ai.netlify.app) |
-| **Ergane** | Job search automation engine | Active |
-| **Metis** | Local personal AI agent | Active |
-| **Venus AI** | Beauty & spa management platform | Beta |
-| **Hypatia** | Adaptive learning for neurodivergent minds | New |
+| **FairHire** | Fair operating signals and salary/job-fit intelligence | [Live](https://fairfit-ai.netlify.app) |
+| **Ergane** | Labor-market signal engine and workflow automation | Active |
+| **Metis** | Local-first knowledge orchestration | Active |
+| **Venus AI** | Service-operations workflow testbed | Beta |
+| **Hypatia** | Adaptive capability-building proof path | New |
 | **Echo** | Pronunciation practice dashboard | New |
 
 ## Stack

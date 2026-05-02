@@ -7,8 +7,8 @@ export const navLinks = [
 
 export const siteConfig = {
   name: 'POSITRONICA LABS',
-  tagline: 'AI for a Fairer Future',
-  description: 'Building AI tools that close gaps, not widen them.',
+  tagline: 'Agentic Operations for Latin America',
+  description: 'Applied agentic AI for high-friction operating systems in Latin America.',
   linkedin: 'https://www.linkedin.com/company/positronica-labs/',
   github: 'https://github.com/G10hdz',
 }

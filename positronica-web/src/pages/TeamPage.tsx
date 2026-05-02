@@ -3,7 +3,7 @@ import { FounderCards } from '@/components/sections/FounderCards'
 import { CurrentFocus } from '@/components/sections/CurrentFocus'
 import { Timeline } from '@/components/sections/Timeline'
 import { RepoStatusGrid } from '@/components/sections/RepoStatusGrid'
-import { useLang } from '@/i18n/LanguageContext'
+import { useLang } from '@/i18n/useLang'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 

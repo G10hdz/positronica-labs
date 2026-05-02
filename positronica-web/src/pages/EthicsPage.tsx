@@ -3,7 +3,7 @@ import { ValueGrid } from '@/components/sections/ValueCard'
 import { QuoteSection } from '@/components/sections/QuoteSection'
 import { PrincipleGrid } from '@/components/sections/PrincipleGrid'
 import { coreValues, principles } from '@/data/ethics'
-import { useLang } from '@/i18n/LanguageContext'
+import { useLang } from '@/i18n/useLang'
 import { motion } from 'framer-motion'
 
 export function EthicsPage() {

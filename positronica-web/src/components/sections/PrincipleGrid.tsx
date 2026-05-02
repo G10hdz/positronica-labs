@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { useLang } from '@/i18n/LanguageContext'
+import { useLang } from '@/i18n/useLang'
 import type { BilingualText } from '@/data/projects'
 
 interface Principle {
@@ -23,42 +23,37 @@ export function PrincipleGrid({
   const { lang } = useLang()
 
   return (
-    <section className="px-6 md:px-12 py-32 bg-surface-container-low">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-          <div>
-            <h4 className="font-brand text-primary tracking-[0.3em] mb-4 uppercase text-xs">
-              {sectionLabel}
-            </h4>
-            <h3 className="font-brand text-3xl md:text-5xl uppercase tracking-[0.1em]">{title}</h3>
-          </div>
+    <section className="bg-surface-container-low/55 px-6 py-32 md:px-12 md:py-40">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-16 max-w-3xl md:mb-20">
+          <p className="mb-4 text-sm font-medium text-on-surface-variant md:text-[15px]">{sectionLabel}</p>
+          <h3 className="font-brand text-[clamp(2.3rem,5vw,4.9rem)] uppercase leading-[0.9] tracking-[-0.03em] text-balance">
+            {title}
+          </h3>
         </div>
 
-        <div className="divide-y divide-outline-variant/20">
-          {principles.map((p, i) => (
-            <motion.div
-              key={p.id}
+        <div className="divide-y divide-outline-variant/16">
+          {principles.map((principle, index) => (
+            <motion.article
+              key={principle.id}
               initial={{ opacity: 0, x: -16 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: i * 0.07 }}
-              className="grid grid-cols-1 md:grid-cols-[80px_1fr_2fr] gap-4 md:gap-12 py-10 group hover:bg-surface-container-lowest/40 transition-colors px-2"
+              viewport={{ once: true, margin: '-10% 0px' }}
+              transition={{ duration: 0.5, delay: index * 0.06, ease: [0.22, 1, 0.36, 1] }}
+              className="group grid grid-cols-1 gap-6 py-9 md:grid-cols-[94px_minmax(220px,0.8fr)_minmax(0,1.3fr)] md:gap-10"
             >
-              {/* Index number */}
-              <span className="font-brand text-4xl font-black text-primary/20 group-hover:text-primary/40 transition-colors leading-none select-none">
-                {String(i + 1).padStart(2, '0')}
+              <span className="select-none font-signal text-5xl font-black leading-none text-primary/18 transition-colors duration-300 group-hover:text-primary/45">
+                {String(index + 1).padStart(2, '0')}
               </span>
 
-              {/* Title */}
-              <h5 className="font-brand tracking-widest text-xs uppercase leading-relaxed self-start pt-1 md:pt-2">
-                {p.title[lang]}
+              <h5 className="self-start font-brand text-sm uppercase leading-relaxed tracking-[0.16em] md:text-base">
+                {principle.title[lang]}
               </h5>
 
-              {/* Description */}
-              <p className="text-sm text-on-surface-variant leading-relaxed">
-                {p.description[lang]}
+              <p className="max-w-2xl text-sm leading-relaxed text-on-surface-variant md:text-[15px]">
+                {principle.description[lang]}
               </p>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </div>

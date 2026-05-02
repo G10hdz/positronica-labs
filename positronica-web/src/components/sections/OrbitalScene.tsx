@@ -15,6 +15,8 @@ import {
   DoubleSide,
   Color,
   MeshBasicMaterial,
+  AdditiveBlending,
+  BackSide,
 } from 'three'
 
 export function OrbitalScene() {
@@ -36,59 +38,82 @@ export function OrbitalScene() {
     renderer.setSize(width, height)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
     renderer.toneMapping = 2 // ACESFilmic
-    renderer.toneMappingExposure = 1.2
+    renderer.toneMappingExposure = 1.45
     container.appendChild(renderer.domElement)
 
-    // Lighting — three-point setup for the iridescent glow
-    scene.add(new AmbientLight(0xffffff, 0.4))
+    scene.add(new AmbientLight(0xffffff, 0.75))
 
-    const keyLight = new PointLight(0xffffff, 2.5)
-    keyLight.position.set(4, 6, 5)
+    const keyLight = new PointLight(0xfffaf5, 3.4)
+    keyLight.position.set(3.8, 4.8, 6.2)
     scene.add(keyLight)
 
-    const fillLight = new PointLight(0xa78bfa, 1.8) // soft purple fill
-    fillLight.position.set(-5, -2, 3)
+    const fillLight = new PointLight(0xcfd5ff, 2.3)
+    fillLight.position.set(-4.5, -1.8, 4)
     scene.add(fillLight)
 
-    const rimLight = new PointLight(0x7dd3fc, 2.0) // cyan rim from behind
-    rimLight.position.set(0, -4, -6)
+    const rimLight = new PointLight(0xffe7cd, 2.5)
+    rimLight.position.set(0.4, -3.6, -5.5)
     scene.add(rimLight)
+
+    const accentLight = new PointLight(0xf6b8ff, 1.35)
+    accentLight.position.set(-3.4, 2.4, 2.5)
+    scene.add(accentLight)
 
     const mainGroup = new Group()
     scene.add(mainGroup)
 
-    // Central sphere — iridescent glass, near-white with soft inner glow
     const sphereMat = new MeshPhysicalMaterial({
-      color: new Color(0xf5f0ff),
-      emissive: new Color(0x9bcfff),
-      emissiveIntensity: 0.35,
-      transmission: 0.85,
-      thickness: 0.8,
-      roughness: 0.04,
-      metalness: 0.0,
+      color: new Color(0xf8fbff),
+      emissive: new Color(0xc9e4ff),
+      emissiveIntensity: 0.18,
+      transmission: 0.98,
+      thickness: 1.35,
+      roughness: 0.03,
+      metalness: 0.02,
       transparent: true,
-      opacity: 0.92,
-      ior: 1.45,
+      opacity: 0.96,
+      ior: 1.5,
+      reflectivity: 0.45,
     })
-    const centralSphere = new Mesh(new SphereGeometry(1.2, 64, 64), sphereMat)
+    const centralSphere = new Mesh(new SphereGeometry(1.6, 96, 96), sphereMat)
     mainGroup.add(centralSphere)
+
+    const innerCore = new Mesh(
+      new SphereGeometry(1.02, 72, 72),
+      new MeshBasicMaterial({
+        color: new Color(0xfef7ee),
+        transparent: true,
+        opacity: 0.34,
+      }),
+    )
+    mainGroup.add(innerCore)
+
+    const aura = new Mesh(
+      new SphereGeometry(2.12, 72, 72),
+      new MeshBasicMaterial({
+        color: new Color(0xd9e8ff),
+        transparent: true,
+        opacity: 0.18,
+        side: BackSide,
+        blending: AdditiveBlending,
+      }),
+    )
+    mainGroup.add(aura)
 
     const atomGroup = new Group()
     mainGroup.add(atomGroup)
 
-    // Gold ring material — matches the Quantum Core mockup
     const ringMaterial = new MeshBasicMaterial({
-      color: new Color(0xc9a84c),
+      color: new Color(0xe0bf7f),
       transparent: true,
-      opacity: 0.55,
+      opacity: 0.62,
       side: DoubleSide,
     })
 
     const ringConfigs = [
-      { x: Math.PI / 6,  y: Math.PI / 3,  z: Math.PI / 4,  color: 0xff85c8, speed: 0.020 }, // pink
-      { x: -Math.PI / 4, y: Math.PI / 6,  z: -Math.PI / 3, color: 0x5bb8ff, speed: 0.015 }, // sky blue
-      { x: Math.PI / 2,  y: 0,            z: Math.PI / 6,  color: 0x6df7c1, speed: 0.025 }, // mint
-      { x: 0,            y: Math.PI / 2,  z: 0,            color: 0xffd166, speed: 0.010 }, // gold
+      { x: Math.PI / 6, y: Math.PI / 4.2, z: Math.PI / 5, color: 0xf6b8ff, speed: 0.009, radius: 2.85, size: 0.16 },
+      { x: -Math.PI / 4.8, y: Math.PI / 7, z: -Math.PI / 3.3, color: 0xbde0ff, speed: 0.006, radius: 3.22, size: 0.14 },
+      { x: Math.PI / 2.3, y: 0, z: Math.PI / 8, color: 0xcdf7d6, speed: 0.011, radius: 3.58, size: 0.12 },
     ]
 
     type Electron = {
@@ -100,31 +125,30 @@ export function OrbitalScene() {
     }
     const electrons: Electron[] = []
 
-    ringConfigs.forEach((cfg, i) => {
-      const radius = 2.5 + i * 0.4
-      const ring = new Mesh(new TorusGeometry(radius, 0.012, 16, 120), ringMaterial)
+    ringConfigs.forEach((cfg) => {
+      const ring = new Mesh(new TorusGeometry(cfg.radius, 0.014, 24, 180), ringMaterial)
       ring.rotation.set(cfg.x, cfg.y, cfg.z)
       atomGroup.add(ring)
 
       const electronMat = new MeshStandardMaterial({
         color: cfg.color,
         emissive: cfg.color,
-        emissiveIntensity: 0.8,
-        roughness: 0.2,
-        metalness: 0.1,
+        emissiveIntensity: 0.95,
+        roughness: 0.16,
+        metalness: 0.02,
       })
-      const electron = new Mesh(new SphereGeometry(0.14, 16, 16), electronMat)
+      const electron = new Mesh(new SphereGeometry(cfg.size, 22, 22), electronMat)
       atomGroup.add(electron)
       electrons.push({
         mesh: electron,
         ring,
         angle: Math.random() * Math.PI * 2,
         speed: cfg.speed,
-        radius,
+        radius: cfg.radius,
       })
     })
 
-    camera.position.z = 7
+    camera.position.z = 8.6
 
     let mouseX = 0
     let mouseY = 0
@@ -151,8 +175,8 @@ export function OrbitalScene() {
       frame = requestAnimationFrame(animate)
       if (!isVisible) return
 
-      atomGroup.rotation.y += 0.005
-      atomGroup.rotation.z += 0.002
+      atomGroup.rotation.y += 0.0018
+      atomGroup.rotation.z += 0.001
 
       electrons.forEach((el) => {
         el.angle += el.speed
@@ -162,8 +186,10 @@ export function OrbitalScene() {
         el.mesh.position.applyEuler(el.ring.rotation as unknown as Euler)
       })
 
-      mainGroup.rotation.x += (mouseY * 0.4 - mainGroup.rotation.x) * 0.05
-      mainGroup.rotation.y += (mouseX * 0.4 - mainGroup.rotation.y) * 0.05
+      centralSphere.rotation.y += 0.0012
+      aura.rotation.y -= 0.0008
+      mainGroup.rotation.x += (mouseY * 0.24 - mainGroup.rotation.x) * 0.04
+      mainGroup.rotation.y += (mouseX * 0.3 - mainGroup.rotation.y) * 0.04
 
       renderer.render(scene, camera)
     }
